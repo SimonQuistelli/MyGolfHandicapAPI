@@ -24,10 +24,8 @@ namespace MyGolfHandicapAPI.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        //public ActionResult<int> GetUserId(string username, string password)
         public ActionResult<int> GetUserId(UserForm user)
         {
-            //string name = Thread.CurrentPrincipal.Identity.Name;
             int userID = _repo.GetUserId(user.username, user.password);
 
             if (userID == 0)

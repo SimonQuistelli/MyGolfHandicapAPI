@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using MyGolfHandicapAPI.Data;
 
 namespace MyGolfHandicapAPI
 {
@@ -45,15 +46,10 @@ namespace MyGolfHandicapAPI
             var authUsername = authSplit[0];
             var authPassword = authSplit.Length > 1 ? authSplit[1] : throw new Exception("Unable to get password");
 
-            //if (authUsername != "simonq" || authPassword != "test")
-            if (authUsername != "handicapapp" || authPassword != "7y6t5r4e3w")
+            if (authUsername != Settings.BasicAuthUserName || authPassword != Settings.BasicAuthPassword)
             {
                 return Task.FromResult(AuthenticateResult.Fail("The username or password is not correct."));
             }
-
-            //var authenticatedUser = new AuthenticatedUser("BasicAuthentication", true, "simonq");
-            //var claimItentity = new ClaimsIdentity(authenticatedUser);
-            //var claimsPrincipal = new ClaimsPrincipal(claimItentity);
 
             var claims = new[]
             {
